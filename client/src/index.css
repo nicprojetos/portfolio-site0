@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(120, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 3.9%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Custom hacker theme colors */
+  --matrix-green: hsl(120, 100%, 50%);
+  --dark-green: hsl(120, 100%, 28%);
+  --deep-black: hsl(320, 50%, 3%);
+  --neon-green: hsl(120, 100%, 57%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground;
+    background-color: var(--deep-black);
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .font-courier {
+    font-family: 'Courier Prime', monospace;
+  }
+  
+  .text-matrix-green {
+    color: var(--matrix-green);
+  }
+  
+  .text-dark-green {
+    color: var(--dark-green);
+  }
+  
+  .text-neon-green {
+    color: var(--neon-green);
+  }
+  
+  .bg-deep-black {
+    background-color: var(--deep-black);
+  }
+  
+  .bg-matrix-green {
+    background-color: var(--matrix-green);
+  }
+  
+  .bg-dark-green {
+    background-color: var(--dark-green);
+  }
+  
+  .border-matrix-green {
+    border-color: var(--matrix-green);
+  }
+  
+  .border-neon-green {
+    border-color: var(--neon-green);
+  }
+}
+
+@layer utilities {
+  .matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .matrix-char {
+    position: absolute;
+    color: var(--matrix-green);
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    animation: matrixRain 12s linear infinite;
+    text-shadow: 0 0 8px var(--matrix-green);
+    opacity: 0.8;
+    font-weight: bold;
+  }
+
+  .matrix-char-bright {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green), 0 0 30px var(--neon-green);
+    color: var(--neon-green);
+  }
+
+  .matrix-char-medium {
+    opacity: 0.7;
+    text-shadow: 0 0 5px var(--matrix-green), 0 0 10px var(--matrix-green);
+  }
+
+  .matrix-char-dim {
+    opacity: 0.4;
+    text-shadow: 0 0 3px var(--dark-green);
+    color: var(--dark-green);
+  }
+  
+  .green-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .green-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--matrix-green);
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 5px var(--matrix-green);
+  }
+
+  .green-underline:hover::after {
+    width: 100%;
+  }
+}
+
+@keyframes matrixRain {
+  0% { 
+    transform: translateY(-100vh); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(100vh); 
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px var(--matrix-green), 0 0 10px var(--matrix-green), 0 0 15px var(--matrix-green); }
+  to { text-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green), 0 0 30px var(--matrix-green); }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
